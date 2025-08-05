@@ -4,7 +4,7 @@ function Cards() {
 			{/* Card 0 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">EMPRESA EJEMPLO E.I.R.L.</h2>
+					<h2 className="card-title">EMPRESA EJEMPLO E.I.R.L. <span className="text-blue-500 font-bold text-lg"> 00</span></h2>
 					<p className="mb-2">Tecnologia y Calidad Asegurada</p>
 					<div className="card-actions justify-end">
 						<button
@@ -33,6 +33,7 @@ function Cards() {
 									<li>
 										<span className="font-semibold">Nombre de la empresa:</span> IMPORT MEDICAL ANICAMA E.I.R.L
 									</li>
+									<span className="font-semibold">ID:</span><span className="text-blue-500 font-bold text-lg"> 00</span>
 									<li>
 										<span className="font-semibold">Contacto:</span> Juana Cervantes
 									</li>
@@ -49,13 +50,7 @@ function Cards() {
 								</div>
 								<ul className="text-left space-y-1">
 									<li>
-										<span className="font-semibold">Nombre del producto:</span> Supawrap
-									</li>
-									<li>
-										<span className="font-semibold">Descripción:</span> Esterilización suave de papel crepé.
-									</li>
-									<li>
-										<span className="font-semibold">Marca:</span> Westfield Medical
+										<span className="font-semibold">Nombre del producto:</span> <p>Esterializacion suave de papel crepé (Supawrap)</p>
 									</li>
 								</ul>
 								<div className="modal-action mt-8 flex justify-end">
@@ -72,7 +67,7 @@ function Cards() {
 			{/* Card 1 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">IMPORT MEDICAL ANICAMA E.I.R.L.</h2>
+					<h2 className="card-title">IMPORT MEDICAL ANICAMA E.I.R.L.<span className="text-blue-500 font-bold text-lg"> 01</span></h2>
 					<p className="mb-2">Tecnologia y Calidad Asegurada</p>
 					<div className="card-actions justify-end">
 						<button
@@ -93,7 +88,7 @@ function Cards() {
 			{/* Card 2 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">VITALTEC</h2>
+					<h2 className="card-title">VITALTEC<span className="text-blue-500 font-bold text-lg"> 02</span></h2>
 					<p className="mb-2">Equipo Medico</p>
 					<div className="card-actions justify-end">
 						<button
@@ -114,7 +109,7 @@ function Cards() {
 			{/* Card 3 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">SETGAD</h2>
+					<h2 className="card-title">SETGAD<span className="text-blue-500 font-bold text-lg"> 03</span></h2>
 					<p className="mb-2">Metrologia</p>
 					<div className="card-actions justify-end">
 						<button
@@ -135,7 +130,7 @@ function Cards() {
 			{/* Card 4 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">MEDICAL SUPPLIES</h2>
+					<h2 className="card-title">MEDICAL SUPPLIES<span className="text-blue-500 font-bold text-lg"> 04</span></h2>
 					<p className="mb-2">Pasion por superar expectativas</p>
 					<div className="card-actions justify-end">
 						<button
@@ -156,7 +151,7 @@ function Cards() {
 			{/* Card 5 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">CEDEMIC</h2>
+					<h2 className="card-title">CEDEMIC<span className="text-blue-500 font-bold text-lg"> 05</span></h2>
 					<p className="mb-2">Somos un soporte en procedimientos quirurgicos y muestreo</p>
 					<div className="card-actions justify-end">
 						<button
@@ -177,7 +172,7 @@ function Cards() {
 			{/* Card 6 */}
 			<div className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200">
 				<div className="card-body items-center text-center">
-					<h2 className="card-title">AIRWELD</h2>
+					<h2 className="card-title">AIRWELD<span className="text-blue-500 font-bold text-lg"> 06</span></h2>
 					<p className="mb-2">INGENIERIA MEDICA</p>
 					<p className="mb-2">Importacion & Distribucion de Equipos e Insumos Medicos</p>
 					<div className="card-actions justify-end">
