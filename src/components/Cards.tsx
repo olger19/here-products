@@ -51,9 +51,12 @@ export default function Cards({ empresas }: Props) {
           className="card max-w-sm w-full bg-sky-100 shadow-xl hover:scale-105 transition-transform duration-200"
         >
           <div className="card-body items-center text-center">
-            <h2 className="card-title">
+            <h2 className="card-title bold">
               {empresa.nombreempresaproveedor}
             </h2>
+            <h3 className="text-sm font-mono font-bold text-info bg-info/10 px-2 py-1 rounded">
+              {empresa.idempresaproveedor}
+            </h3>
             <p className="mb-2">
               Contacto: {empresa.nombrecontacto || 'No registrado'}
             </p>
