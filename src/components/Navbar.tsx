@@ -2,10 +2,10 @@ import { useState } from 'react';
 import supabase from '../utils/supabase';
 
 type Empresa = {
-  idempresaproveedor: string;
-  nombreempresaproveedor: string;
-  nombrecontacto: string | null;
-  celular: string | null;
+	idempresaproveedor: string;
+	nombreempresaproveedor: string;
+	nombrecontacto: string | null;
+	celular: string | null;
 };
 
 type NavbarProps = {
@@ -163,20 +163,30 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 							<div className="w-10 rounded-full">
 								<img
 									alt="Tailwind CSS Navbar component"
-									src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+									src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+								/>
 							</div>
 						</div>
 						<ul
 							tabIndex={0}
-							className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+							className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+						>
 							<li>
-								<a className="justify-between">
+								<a className="pointer-events-none opacity-50 cursor-not-allowed select-none justify-between">
 									Profile
 									<span className="badge">New</span>
 								</a>
 							</li>
-							<li><a>Settings</a></li>
-							<li><a>Logout</a></li>
+							<li>
+								<a className="pointer-events-none opacity-50 cursor-not-allowed select-none">
+									Settings
+								</a>
+							</li>
+							<li>
+								<a className="pointer-events-none opacity-50 cursor-not-allowed select-none">
+									Logout
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
