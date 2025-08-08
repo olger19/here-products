@@ -1,4 +1,63 @@
-function Navbar() {
+import { useState } from 'react';
+import supabase from '../utils/supabase';
+
+type Empresa = {
+  idempresaproveedor: string;
+  nombreempresaproveedor: string;
+  nombrecontacto: string | null;
+  celular: string | null;
+};
+
+type NavbarProps = {
+	search: string
+	setSearch: (value: string) => void
+	agregarProveedorLocal: (nuevoProveedor: Empresa) => void;
+}
+
+function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
+	const [nombreEmpresa, setNombreEmpresa] = useState("");
+	const [contacto, setContacto] = useState("");
+	const [celular, setCelular] = useState("");
+	const [loading, setLoading] = useState(false);
+
+	// Función para agregar proveedor
+	const handleAgregarProveedor = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setLoading(true);
+		// Genera un id único para la empresa (puedes usar uuid o Date.now)
+		const idempresaproveedor = Date.now().toString();
+		const { error } = await supabase
+			.from("empresaproveedor")
+			.insert([
+				{
+					idempresaproveedor,
+					nombreempresaproveedor: nombreEmpresa,
+					nombrecontacto: contacto,
+					celular,
+				},
+			]);
+		setLoading(false);
+		if (!error) {
+			setNombreEmpresa("");
+			setContacto("");
+			setCelular("");
+			// Agrega el nuevo proveedor a la lista local
+			agregarProveedorLocal({
+				idempresaproveedor,
+				nombreempresaproveedor: nombreEmpresa,
+				nombrecontacto: contacto,
+				celular,
+			});
+			// Cierra el modal
+			const modal = document.getElementById("my_modal_1") as HTMLDialogElement | null;
+			if (modal) modal.close();
+			// Opcional: puedes recargar la lista de empresas desde App usando un callback o evento
+			alert("Proveedor agregado correctamente");
+		} else {
+			alert("Error al agregar proveedor");
+		}
+	};
+
 	return (
 		<>
 			<div className="navbar bg-base-100 shadow-sm">
@@ -26,6 +85,8 @@ function Navbar() {
 							</span>
 							<input
 								type="text"
+								value={search}
+								onChange={(e) => setSearch(e.target.value)}
 								placeholder="Buscar coincidencias..."
 								className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
 							/>
@@ -47,21 +108,51 @@ function Navbar() {
 						</svg>
 						<span>Agregar Proveedor</span>
 					</button>
+					{/* ...navbar code... */}
 					<dialog id="my_modal_1" className="modal">
 						<div className="modal-box">
 							<h3 className="font-bold text-lg">Agregar Proveedor</h3>
-							<p className="py-2">Ingrese la informacion del proveedor</p>
+							<p className="py-2">Ingrese la información del proveedor</p>
 							<div className="modal-action">
-								<form method="dialog" className="space-y-2">
-									{/* if there is a button in form, it will close the modal */}
+								<form className="space-y-2 w-full" onSubmit={handleAgregarProveedor}>
 									<label className="label mt-2">Nombre de la Empresa</label>
-									<input type="text" className="input w-full" placeholder="Vitaltec" />
+									<input
+										type="text"
+										className="input w-full"
+										placeholder="Vitaltec"
+										value={nombreEmpresa}
+										onChange={(e) => setNombreEmpresa(e.target.value)}
+										required
+									/>
 									<label className="label mt-2">Contacto</label>
-									<input type="text" className="input w-full" placeholder="Fernanda Ancori" />
+									<input
+										type="text"
+										className="input w-full"
+										placeholder="Fernanda Ancori"
+										value={contacto}
+										onChange={(e) => setContacto(e.target.value)}
+									/>
 									<label className="label mt-2">Celular</label>
-									<input type="text" className="input w-full" placeholder="+51 987 123 432" />
-
-									<button className="btn btn-primary">Cerrar</button>
+									<input
+										type="text"
+										className="input w-full"
+										placeholder="+51 987 123 432"
+										value={celular}
+										onChange={(e) => setCelular(e.target.value)}
+									/>
+									<button className="btn btn-primary" type="submit" disabled={loading}>
+										{loading ? "Agregando..." : "Agregar"}
+									</button>
+									<button
+										className="btn ml-2"
+										type="button"
+										onClick={() => {
+											const modal = document.getElementById("my_modal_1") as HTMLDialogElement | null;
+											if (modal) modal.close();
+										}}
+									>
+										Cerrar
+									</button>
 								</form>
 							</div>
 						</div>
