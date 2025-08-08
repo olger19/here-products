@@ -48,7 +48,7 @@ export default function Cards({ empresas }: Props) {
       {empresas.map((empresa) => (
         <div
           key={empresa.idempresaproveedor}
-          className="card max-w-sm w-full bg-sky-100 shadow-xl hover:scale-105 transition-transform duration-200"
+          className="card max-w-sm w-full bg-sky-200 shadow-xl hover:scale-105 transition-transform duration-200"
         >
           <div className="card-body items-center text-center">
             <h2 className="card-title bold">
