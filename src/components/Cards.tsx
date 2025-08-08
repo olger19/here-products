@@ -44,11 +44,11 @@ export default function Cards({ empresas }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-6">
       {empresas.map((empresa) => (
         <div
           key={empresa.idempresaproveedor}
-          className="card w-96 shadow-xl hover:scale-105 transition-transform duration-200"
+          className="card max-w-sm w-full bg-sky-100 shadow-xl hover:scale-105 transition-transform duration-200"
         >
           <div className="card-body items-center text-center">
             <h2 className="card-title">

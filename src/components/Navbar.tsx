@@ -60,11 +60,11 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 
 	return (
 		<>
-			<div className="navbar bg-base-100 shadow-sm">
-				<div className="flex-1">
+			<div className="navbar bg-base-100 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-4 py-2">
+				<div className="flex-1 flex items-center justify-between w-full">
 					<a className="btn btn-ghost text-xl">Here Productos</a>
 				</div>
-				<div className="flex gap-2">
+				<div className="flex flex-col md:flex-row gap-2 w-full md:w-auto items-stretch md:items-center">
 					{/* Search inputs */}
 					<div className="w-full max-w-md">
 						<div className="relative">
@@ -95,7 +95,7 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 
 					{/* Button to open modal */}
 					<button
-						className="btn btn-primary"
+						className="btn btn-primary w-full md:w-auto flex items-center justify-center"
 						onClick={() => {
 							const modal = document.getElementById('my_modal_1') as HTMLDialogElement | null;
 							if (modal) {
@@ -106,7 +106,7 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 						<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
 						</svg>
-						<span>Agregar Proveedor</span>
+						<span className='hidden md:inline'>Agregar Proveedor</span>
 					</button>
 					{/* ...navbar code... */}
 					<dialog id="my_modal_1" className="modal">
