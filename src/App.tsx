@@ -20,7 +20,8 @@ function App() {
   const [empresasConProductos, setEmpresasConProductos] = useState<
     (Empresa & { productos: Producto[] })[]
   >([])
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState('');
+  const [isLoading, setIsLoading] = useState(true); // <-- Estado de loading
 
   // Cargar empresas al iniciar
   const agregarProveedorLocal = (nuevoProveedor: Empresa) => {
@@ -32,10 +33,14 @@ function App() {
 
   useEffect(() => {
     const fetchEmpresas = async () => {
+      setIsLoading(true) // Inicia loading
       const { data: empresasData, error: empresasError } = await supabase
         .from('empresaproveedor')
         .select('*')
-      if (empresasError || !empresasData) return
+      if (empresasError || !empresasData) {
+        setIsLoading(false)
+        return
+      }
 
       // Obtener productos de cada empresa
       const empresasWithProducts = await Promise.all(
@@ -52,7 +57,8 @@ function App() {
           }
         })
       )
-      setEmpresasConProductos(empresasWithProducts)
+      setEmpresasConProductos(empresasWithProducts);
+      setIsLoading(false) // Finaliza loading
     }
     fetchEmpresas()
   }, [])
@@ -67,7 +73,13 @@ function App() {
   return (
     <>
       <Navbar search={search} setSearch={setSearch}  agregarProveedorLocal={agregarProveedorLocal}/>
-      <Cards empresas={search ? empresasFiltradas : empresasConProductos} />
+      {isLoading ? (
+        <div className="flex justify-center items-center mt-10">
+          <span className="loading loading-spinner loading-lg text-info"></span>
+        </div>
+      ) : (
+        <Cards empresas={search ? empresasFiltradas : empresasConProductos} />
+      )}
     </>
   )
 }
