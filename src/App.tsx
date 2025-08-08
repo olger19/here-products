@@ -17,7 +17,6 @@ interface Producto {
 }
 
 function App() {
-  const [empresas, setEmpresas] = useState<Empresa[]>([])
   const [empresasConProductos, setEmpresasConProductos] = useState<
     (Empresa & { productos: Producto[] })[]
   >([])
