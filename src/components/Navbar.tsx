@@ -15,6 +15,7 @@ type NavbarProps = {
 }
 
 function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
+	const [idempresaproveedor, setIdEmpresa] = useState("");
 	const [nombreEmpresa, setNombreEmpresa] = useState("");
 	const [contacto, setContacto] = useState("");
 	const [celular, setCelular] = useState("");
@@ -24,8 +25,7 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 	const handleAgregarProveedor = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
-		// Genera un id único para la empresa (puedes usar uuid o Date.now)
-		const idempresaproveedor = Date.now().toString();
+
 		const { error } = await supabase
 			.from("empresaproveedor")
 			.insert([
@@ -37,7 +37,9 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 				},
 			]);
 		setLoading(false);
+
 		if (!error) {
+			setIdEmpresa("");
 			setNombreEmpresa("");
 			setContacto("");
 			setCelular("");
@@ -48,7 +50,7 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 				nombrecontacto: contacto,
 				celular,
 			});
-			// Cierra el modal
+			// Cierra el modal 2
 			const modal = document.getElementById("my_modal_1") as HTMLDialogElement | null;
 			if (modal) modal.close();
 			// Opcional: puedes recargar la lista de empresas desde App usando un callback o evento
@@ -115,6 +117,15 @@ function Navbar({ search, setSearch, agregarProveedorLocal }: NavbarProps) {
 							<p className="py-2">Ingrese la información del proveedor</p>
 							<div className="modal-action">
 								<form className="space-y-2 w-full" onSubmit={handleAgregarProveedor}>
+									<label className="label mt-2">Identificador de la Empresa</label>
+									<input
+										type="text"
+										className="input w-full"
+										placeholder="07"
+										value={idempresaproveedor}
+										onChange={(e) => setIdEmpresa(e.target.value)}
+										required
+									/>
 									<label className="label mt-2">Nombre de la Empresa</label>
 									<input
 										type="text"
